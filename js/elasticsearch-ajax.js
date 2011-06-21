@@ -49,7 +49,12 @@ ElasticSearch.Ajax = {
           callback(e.toString(), httpRequest, e);
           return;
         }
-        callback(json, httpRequest);
+        if (httpRequest.status == 200) {
+          callback(json, httpRequest);
+        } else {
+          callback("error", httpRequest, json);
+
+        }
       }
     };
 
